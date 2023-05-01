@@ -12,8 +12,8 @@ db_host = getenv('HBNB_API_HOST')
 db_port = getenv('HBNB_API_PORT')
 
 app = Flask(__name__)
-app.register_blueprint(app_views, url_prefix='/api/v1')
-CORS(app, resources={'/*': {'origins': app_host}})
+app.register_blueprint(app_views)
+cors = CORS(app, resources={'/*': {'origins': app_host}})
 
 
 @app.teardown_appcontext
@@ -29,6 +29,6 @@ def not_found(error):
 
 
 if __name__ == "__main__":
-    app.run(host=db_host if db_host else '0.0.0.0',
-            port=db_port if db_port else '5000',
-            threaded=True, debug=1)
+    host = host or "0.0.0.0"
+    port = port or 5000
+    app.run(host=host, port=port, threaded=True, debug=True)
