@@ -11,10 +11,10 @@ from models.user import User
 
 @app_views.route('/cities/<cities_id>/places', methods=['GET'],
                  strict_slashes=False)
-def get_places_by_city(city_id):
+def get_places_by_city(cities_id):
     """ method to get list of all places in a city"""
 
-    city = storage.get(City, city_id)
+    city = storage.get(City, cities_id)
     if not city:
         abort(404)
 
