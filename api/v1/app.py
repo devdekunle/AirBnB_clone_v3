@@ -20,8 +20,8 @@ cors = CORS(app, resources={r"/*": {"origins": '0.0.0.0'}})
 def close_db(exc):
     """handle exit"""
     storage.close()
-    
-    
+
+
 @app.errorhandler(404)
 def error_handler(error):
     """handle 404 errors"""
