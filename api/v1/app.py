@@ -13,19 +13,19 @@ db_host = getenv("HBNB_API_HOST")
 db_port = getenv("HBNB_API_PORT")
 app = Flask(__name__)
 app.register_blueprint(app_views)
+
 cors = CORS(app, resources={r"/*": {"origins": '0.0.0.0'}})
-
-
-@app.errorhandler(404)
-def error_handler(error):
-    """handle 404 errors"""
-    return make_response(jsonify({'error': "Not found"}), 404)
-
 
 @app.teardown_appcontext
 def close_db(exc):
     """handle exit"""
     storage.close()
+    
+    
+@app.errorhandler(404)
+def error_handler(error):
+    """handle 404 errors"""
+    return make_response(jsonify({'error': "Not found"}), 404)
 
 
 if __name__ == "__main__":
