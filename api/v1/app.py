@@ -29,6 +29,6 @@ def not_found(error):
 
 
 if __name__ == "__main__":
-    host = host or "0.0.0.0"
-    port = port or 5000
+    host = db_host or "0.0.0.0"
+    port = db_port or 5000
     app.run(host=host, port=port, threaded=True, debug=True)
