@@ -5,6 +5,7 @@ creating an api
 from flask import Flask, make_response, jsonify
 from models import storage
 from api.v1.views import app_views
+from flask_cors import CORS
 from os import getenv
 
 db_host = getenv('HBNB_API_HOST')
