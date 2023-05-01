@@ -60,8 +60,6 @@ def create_state():
 
     # Add the new State object to the storage
     storage.new(state)
-
-    # Save the changes to the storage
     storage.save()
 
     # Return a JSON response with the new State object and a 201 status code
@@ -87,5 +85,5 @@ def update_state(state_id):
             if key not in ['id', 'created_at', 'updated_at']:
                 setattr(state, key, value)
         # save updated state object
-        state.save()
+        storage.save()
         return make_response(jsonify(state.to_dict()), 200)
