@@ -94,8 +94,6 @@ def update_city(city_id):
         if key not in ['id', 'created_at', 'updated_at', 'state_id']:
             setattr(city, key, value)
     # Save the changes made to the City object
-    storage.save()
-
+    city.save()
     # Return the updated City object as a JSON response with a 200 status code
     return make_response(jsonify(city.to_dict()), 200)
-
