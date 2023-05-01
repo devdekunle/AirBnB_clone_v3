@@ -11,13 +11,12 @@ from models.user import User
 
 @app_views.route('/cities/<cities_id>/places', methods=['GET'],
                  strict_slashes=False)
-def get_places_by_city_id(city_id):
+def get_places_by_city(city_id):
+    """Method to get list of all places in a city"""
     city = storage.get(City, city_id)
-    places = storage.all(Place).values()
     if not city:
         abort(404)
-    return jsonify([place.to_dict()
-                    for place in places if place.city_id == city_id])
+    return jsonify([place.to_dict() for place in city.places])
 
 
 @app_views.route('/places/<place_id>', methods=['GET'],
