@@ -23,10 +23,11 @@ def error_handler(error):
 
 
 @app.teardown_appcontext
-def close_db(error):
+def close_db(exc):
     """handle exit"""
     storage.close()
 
 
 if __name__ == "__main__":
-    app.run(host=db_host or "0.0.0.0", port=db_port or 5000, threaded=True, debug=True)
+    app.run(host=db_host or "0.0.0.0", port=db_port or 5000,
+            threaded=True, debug=True)
