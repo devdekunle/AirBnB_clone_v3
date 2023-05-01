@@ -9,8 +9,8 @@ from api.v1.views import app_views
 from os import getenv
 
 
-host = getenv("HBNB_API_HOST")
-port = getenv("HBNB_API_PORT")
+db_host = getenv("HBNB_API_HOST")
+db_port = getenv("HBNB_API_PORT")
 app = Flask(__name__)
 app.register_blueprint(app_views)
 cors = CORS(app, resources={r"/*": {"origins": '0.0.0.0'}})
@@ -29,8 +29,4 @@ def close_db(error):
 
 
 if __name__ == "__main__":
-    if not host:
-        host = "0.0.0.0"
-    if not port:
-        port = 5000
-    app.run(host=host, port=port, threaded=True, debug=True)
+    app.run(host=db_host or "0.0.0.0", port=db_port or 5000, threaded=True, debug=True)
