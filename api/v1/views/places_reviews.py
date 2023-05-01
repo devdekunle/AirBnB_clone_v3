@@ -18,7 +18,8 @@ def get_reviews_by_place(place_id):
     place = storage.get(Place, place_id)
     if place is None:
         abort(404)
-    reviews = [review.to_dict() for review in place.reviews if review.place_id == place_id]
+    reviews = [review.to_dict() for review in place.reviews 
+               if review.place_id == place_id]
     return jsonify(reviews)
 
 
@@ -46,7 +47,8 @@ def delete_review(review_id):
     return jsonify({})
 
 
-@app_views.route('/places/<place_id>/reviews', methods=['POST'], strict_slashes=False)
+@app_views.route('/places/<place_id>/reviews', methods=['POST'], 
+                 strict_slashes=False)
 def create_review(place_id):
     """
     Creates a new Review object
