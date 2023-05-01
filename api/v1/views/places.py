@@ -67,7 +67,7 @@ def create_place(city_id):
         abort(400, "Missing name")
 
     place = Place(**data)
-    setattr(place, 'city_id', city_id)
+    #setattr(place, 'city_id', city_id)
     storage.new()
     storage.save()
     return make_response(jsonify(place.to_dict()), 201)
